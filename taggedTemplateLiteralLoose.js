@@ -1,15 +1,4 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _taggedTemplateLiteralLoose;
-function _taggedTemplateLiteralLoose(strings, raw) {
-  if (!raw) {
-    raw = strings.slice(0);
-  }
-  strings.raw = raw;
-  return strings;
+function _taggedTemplateLiteralLoose(e, t) {
+  return t || (t = e.slice(0)), e.raw = t, e;
 }
-
-//# sourceMappingURL=taggedTemplateLiteralLoose.js.map
+module.exports = _taggedTemplateLiteralLoose, module.exports.__esModule = true, module.exports["default"] = module.exports;

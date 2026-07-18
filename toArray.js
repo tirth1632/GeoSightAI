@@ -1,15 +1,8 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _toArray;
-var _arrayWithHoles = require("./arrayWithHoles.js");
-var _iterableToArray = require("./iterableToArray.js");
-var _unsupportedIterableToArray = require("./unsupportedIterableToArray.js");
-var _nonIterableRest = require("./nonIterableRest.js");
-function _toArray(arr) {
-  return (0, _arrayWithHoles.default)(arr) || (0, _iterableToArray.default)(arr) || (0, _unsupportedIterableToArray.default)(arr) || (0, _nonIterableRest.default)();
+var arrayWithHoles = require("./arrayWithHoles.js");
+var iterableToArray = require("./iterableToArray.js");
+var unsupportedIterableToArray = require("./unsupportedIterableToArray.js");
+var nonIterableRest = require("./nonIterableRest.js");
+function _toArray(r) {
+  return arrayWithHoles(r) || iterableToArray(r) || unsupportedIterableToArray(r) || nonIterableRest();
 }
-
-//# sourceMappingURL=toArray.js.map
+module.exports = _toArray, module.exports.__esModule = true, module.exports["default"] = module.exports;

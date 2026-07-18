@@ -1,16 +1,6 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = tsRewriteRelativeImportExtensions;
-function tsRewriteRelativeImportExtensions(path, preserveJsx) {
-  if (typeof path === "string" && /^\.\.?\//.test(path)) {
-    return path.replace(/\.(tsx)$|((?:\.d)?)((?:\.[^./]+)?)\.([cm]?)ts$/i, function (m, tsx, d, ext, cm) {
-      return tsx ? preserveJsx ? ".jsx" : ".js" : d && (!ext || !cm) ? m : d + ext + "." + cm.toLowerCase() + "js";
-    });
-  }
-  return path;
+function tsRewriteRelativeImportExtensions(t, e) {
+  return "string" == typeof t && /^\.\.?\//.test(t) ? t.replace(/\.(tsx)$|((?:\.d)?)((?:\.[^./]+)?)\.([cm]?)ts$/i, function (t, s, r, n, o) {
+    return s ? e ? ".jsx" : ".js" : !r || n && o ? r + n + "." + o.toLowerCase() + "js" : t;
+  }) : t;
 }
-
-//# sourceMappingURL=tsRewriteRelativeImportExtensions.js.map
+module.exports = tsRewriteRelativeImportExtensions, module.exports.__esModule = true, module.exports["default"] = module.exports;

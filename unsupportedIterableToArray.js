@@ -1,19 +1,9 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _unsupportedIterableToArray;
-var _arrayLikeToArray = require("./arrayLikeToArray.js");
-function _unsupportedIterableToArray(o, minLen) {
-  if (!o) return;
-  if (typeof o === "string") return (0, _arrayLikeToArray.default)(o, minLen);
-  var name = Object.prototype.toString.call(o).slice(8, -1);
-  if (name === "Object" && o.constructor) name = o.constructor.name;
-  if (name === "Map" || name === "Set") return Array.from(o);
-  if (name === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(name)) {
-    return (0, _arrayLikeToArray.default)(o, minLen);
+var arrayLikeToArray = require("./arrayLikeToArray.js");
+function _unsupportedIterableToArray(r, a) {
+  if (r) {
+    if ("string" == typeof r) return arrayLikeToArray(r, a);
+    var t = {}.toString.call(r).slice(8, -1);
+    return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? arrayLikeToArray(r, a) : void 0;
   }
 }
-
-//# sourceMappingURL=unsupportedIterableToArray.js.map
+module.exports = _unsupportedIterableToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;

@@ -1,13 +1,6 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _superPropSet;
-var _set = require("./set.js");
-var _getPrototypeOf = require("./getPrototypeOf.js");
-function _superPropSet(classArg, property, value, receiver, isStrict, prototype) {
-  return (0, _set.default)((0, _getPrototypeOf.default)(prototype ? classArg.prototype : classArg), property, value, receiver, isStrict);
+var set = require("./set.js");
+var getPrototypeOf = require("./getPrototypeOf.js");
+function _superPropSet(t, e, o, r, p, f) {
+  return set(getPrototypeOf(f ? t.prototype : t), e, o, r, p);
 }
-
-//# sourceMappingURL=superPropSet.js.map
+module.exports = _superPropSet, module.exports.__esModule = true, module.exports["default"] = module.exports;

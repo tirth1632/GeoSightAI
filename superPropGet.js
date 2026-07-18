@@ -1,16 +1,9 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _superPropGet;
-var _get = require("./get.js");
-var _getPrototypeOf = require("./getPrototypeOf.js");
-function _superPropGet(classArg, property, receiver, flags) {
-  var result = (0, _get.default)((0, _getPrototypeOf.default)(flags & 1 ? classArg.prototype : classArg), property, receiver);
-  return flags & 2 && typeof result === "function" ? function (args) {
-    return result.apply(receiver, args);
-  } : result;
+var get = require("./get.js");
+var getPrototypeOf = require("./getPrototypeOf.js");
+function _superPropGet(t, o, e, r) {
+  var p = get(getPrototypeOf(1 & r ? t.prototype : t), o, e);
+  return 2 & r && "function" == typeof p ? function (t) {
+    return p.apply(e, t);
+  } : p;
 }
-
-//# sourceMappingURL=superPropGet.js.map
+module.exports = _superPropGet, module.exports.__esModule = true, module.exports["default"] = module.exports;

@@ -1,29 +1,12 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _using;
-function _using(stack, value, isAwait) {
-  if (value === null || value === void 0) return value;
-  if (Object(value) !== value) {
-    throw new TypeError("using declarations can only be used with objects, functions, null, or undefined.");
-  }
-  if (isAwait) {
-    var dispose = value[Symbol.asyncDispose || Symbol.for("Symbol.asyncDispose")];
-  }
-  if (dispose === null || dispose === void 0) {
-    dispose = value[Symbol.dispose || Symbol.for("Symbol.dispose")];
-  }
-  if (typeof dispose !== "function") {
-    throw new TypeError(`Property [Symbol.dispose] is not a function.`);
-  }
-  stack.push({
-    v: value,
-    d: dispose,
-    a: isAwait
-  });
-  return value;
+function _using(o, n, e) {
+  if (null == n) return n;
+  if (Object(n) !== n) throw new TypeError("using declarations can only be used with objects, functions, null, or undefined.");
+  if (e) var r = n[Symbol.asyncDispose || Symbol["for"]("Symbol.asyncDispose")];
+  if (null == r && (r = n[Symbol.dispose || Symbol["for"]("Symbol.dispose")]), "function" != typeof r) throw new TypeError("Property [Symbol.dispose] is not a function.");
+  return o.push({
+    v: n,
+    d: r,
+    a: e
+  }), n;
 }
-
-//# sourceMappingURL=using.js.map
+module.exports = _using, module.exports.__esModule = true, module.exports["default"] = module.exports;

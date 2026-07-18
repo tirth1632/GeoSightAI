@@ -1,9 +1,2 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _temporalUndefined;
 function _temporalUndefined() {}
-
-//# sourceMappingURL=temporalUndefined.js.map
+module.exports = _temporalUndefined, module.exports.__esModule = true, module.exports["default"] = module.exports;
