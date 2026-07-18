@@ -1,0 +1,33 @@
+/* src/components/MapViewer.css */
+
+/* Glassmorphism tooltip */
+.tooltip {
+  background: rgba(30, 30, 30, 0.85);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.75rem;
+  padding: 0.75rem 1rem;
+  color: #f0f0f0;
+  min-width: 200px;
+  max-width: 280px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+  font-size: 0.85rem;
+  line-height: 1.4;
+  z-index: 1000;
+  transform: translate(-50%, -100%);
+}
+
+.tooltip p {
+  margin: 0.2rem 0;
+}
+
+.tooltip a {
+  color: #4fa9ff;
+  text-decoration: underline;
+}
+
+/* Arrow button (ChevronDown) already styled via class, but add hover effect */
+.ChevronDown:hover {
+  transform: scale(1.2);
+  transition: transform 0.2s ease;
+}
