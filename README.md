@@ -1,110 +1,227 @@
-# Redux Toolkit
+# React Components for the Google Maps JavaScript API
 
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/reduxjs/redux-toolkit/tests.yml?style=flat-square)
-[![npm version](https://img.shields.io/npm/v/@reduxjs/toolkit.svg?style=flat-square)](https://www.npmjs.com/package/@reduxjs/toolkit)
-[![npm downloads](https://img.shields.io/npm/dm/@reduxjs/toolkit.svg?style=flat-square&label=RTK+downloads)](https://www.npmjs.com/package/@reduxjs/toolkit)
+[![MIT License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/visgl/react-google-maps/tree/main/LICENSE)
 
-**The official, opinionated, batteries-included toolset for efficient Redux development**
+This is a TypeScript / JavaScript library to integrate the Maps JavaScript API
+into your React application.
+It comes with a collection of React components to create maps, markers,
+infowindows, geometry overlays (circles, polylines, polygons), and
+photorealistic [3D maps][gmp-maps-3d], as well as a set of hooks to use some
+of the Maps JavaScript API [Services][gmp-services] and
+[Libraries][gmp-libraries].
 
 ## Installation
 
-### Create a React Redux App
+This library is available on npm as [`@vis.gl/react-google-maps`][npm-package].
 
-The recommended way to start new apps with React and Redux Toolkit is by using [our official Redux Toolkit + TS template for Vite](https://github.com/reduxjs/redux-templates), or by creating a new Next.js project using [Next's `with-redux` template](https://github.com/vercel/next.js/tree/canary/examples/with-redux).
-
-Both of these already have Redux Toolkit and React-Redux configured appropriately for that build tool, and come with a small example app that demonstrates how to use several of Redux Toolkit's features.
-
-```bash
-# Vite with our Redux+TS template
-# (using the `degit` tool to clone and extract the template)
-npx degit reduxjs/redux-templates/packages/vite-template-redux my-app
-
-# Next.js using the `with-redux` template
-npx create-next-app --example with-redux my-app
+```sh
+npm install @vis.gl/react-google-maps
 ```
 
-We do not currently have official React Native templates, but recommend these templates for standard React Native and for Expo:
+or
 
-- https://github.com/rahsheen/react-native-template-redux-typescript
-- https://github.com/rahsheen/expo-template-redux-typescript
-
-### An Existing App
-
-Redux Toolkit is available as a package on NPM for use with a module bundler or in a Node application:
-
-```bash
-# NPM
-npm install @reduxjs/toolkit
-
-# Yarn
-yarn add @reduxjs/toolkit
+```sh
+yarn add @vis.gl/react-google-maps
 ```
 
-The package includes a precompiled ESM build that can be used as a [`<script type="module">` tag](https://unpkg.com/@reduxjs/toolkit/dist/redux-toolkit.browser.mjs) directly in the browser.
+_(PowerShell users: since `@` has a special meaning in PowerShell, the
+package name has to be quoted)_
 
-## Documentation
+## Usage
 
-The Redux Toolkit docs are available at **https://redux-toolkit.js.org**, including API references and usage guides for all of the APIs included in Redux Toolkit.
+Import the [`APIProvider`][api-provider] and wrap it around all components that should have
+access to the Maps JavaScript API.
+Any component within the context of the `APIProvider` can use the hooks and
+components provided by this library.
 
-The Redux core docs at https://redux.js.org includes the full Redux tutorials, as well usage guides on general Redux patterns.
+To render a simple map, add a [`Map`][api-map] component inside the `APIProvider`.
+Within the `Map` component, you can then add further components like
+[`Marker`][api-marker], [`AdvancedMarker`][api-adv-marker],
+[`InfoWindow`][api-infowindow], or geometry components such as
+[`Circle`][api-circle], [`Polyline`][api-polyline], and
+[`Polygon`][api-polygon] to render content on the map.
+For photorealistic 3D maps, use the [`Map3D`][api-map-3d] component instead.
 
-## Purpose
+For more advanced use-cases you can even add your own components to the map
+that make use of `google.maps.OverlayView` or `google.maps.WebGlOverlayView`.
 
-The **Redux Toolkit** package is intended to be the standard way to write Redux logic. It was originally created to help address three common concerns about Redux:
+```tsx
+import {AdvancedMarker, APIProvider, Map} from '@vis.gl/react-google-maps';
 
-- "Configuring a Redux store is too complicated"
-- "I have to add a lot of packages to get Redux to do anything useful"
-- "Redux requires too much boilerplate code"
+function App() {
+  const position = {lat: 53.54992, lng: 10.00678};
 
-We can't solve every use case, but in the spirit of [`create-react-app`](https://github.com/facebook/create-react-app), we can try to provide some tools that abstract over the setup process and handle the most common use cases, as well as include some useful utilities that will let the user simplify their application code.
+  return (
+    <APIProvider apiKey={'YOUR API KEY HERE'}>
+      <Map defaultCenter={position} defaultZoom={10} mapId="DEMO_MAP_ID">
+        <AdvancedMarker position={position} />
+      </Map>
+    </APIProvider>
+  );
+}
 
-Because of that, this package is deliberately limited in scope. It does _not_ address concepts like "reusable encapsulated Redux modules", folder or file structures, managing entity relationships in the store, and so on.
-
-Redux Toolkit also includes a powerful data fetching and caching capability that we've dubbed "RTK Query". It's included in the package as a separate set of entry points. It's optional, but can eliminate the need to hand-write data fetching logic yourself.
-
-## What's Included
-
-Redux Toolkit includes these APIs:
-
-- `configureStore()`: wraps `createStore` to provide simplified configuration options and good defaults. It can automatically combine your slice reducers, add whatever Redux middleware you supply, includes `redux-thunk` by default, and enables use of the Redux DevTools Extension.
-- `createReducer()`: lets you supply a lookup table of action types to case reducer functions, rather than writing switch statements. In addition, it automatically uses the [`immer` library](https://github.com/mweststrate/immer) to let you write simpler immutable updates with normal mutative code, like `state.todos[3].completed = true`.
-- `createAction()`: generates an action creator function for the given action type string. The function itself has `toString()` defined, so that it can be used in place of the type constant.
-- `createSlice()`: combines `createReducer()` + `createAction()`. Accepts an object of reducer functions, a slice name, and an initial state value, and automatically generates a slice reducer with corresponding action creators and action types.
-- `combineSlices()`: combines multiple slices into a single reducer, and allows "lazy loading" of slices after initialisation.
-- `createListenerMiddleware()`: lets you define "listener" entries that contain an "effect" callback with additional logic, and a way to specify when that callback should run based on dispatched actions or state changes. A lightweight alternative to Redux async middleware like sagas and observables.
-- `createAsyncThunk()`: accepts an action type string and a function that returns a promise, and generates a thunk that dispatches `pending/resolved/rejected` action types based on that promise
-- `createEntityAdapter()`: generates a set of reusable reducers and selectors to manage normalized data in the store
-- The `createSelector()` utility from the [Reselect](https://github.com/reduxjs/reselect) library, re-exported for ease of use.
-
-For details, see [the Redux Toolkit API Reference section in the docs](https://redux-toolkit.js.org/api/configureStore).
-
-## RTK Query
-
-**RTK Query** is provided as an optional addon within the `@reduxjs/toolkit` package. It is purpose-built to solve the use case of data fetching and caching, supplying a compact, but powerful toolset to define an API interface layer for your app. It is intended to simplify common cases for loading data in a web application, eliminating the need to hand-write data fetching & caching logic yourself.
-
-RTK Query is built on top of the Redux Toolkit core for its implementation, using [Redux](https://redux.js.org/) internally for its architecture. Although knowledge of Redux and RTK are not required to use RTK Query, you should explore all of the additional global store management capabilities they provide, as well as installing the [Redux DevTools browser extension](https://github.com/reduxjs/redux-devtools), which works flawlessly with RTK Query to traverse and replay a timeline of your request & cache behavior.
-
-RTK Query is included within the installation of the core Redux Toolkit package. It is available via either of the two entry points below:
-
-```ts no-transpile
-import { createApi } from '@reduxjs/toolkit/query'
-
-/* React-specific entry point that automatically generates
-   hooks corresponding to the defined endpoints */
-import { createApi } from '@reduxjs/toolkit/query/react'
+export default App;
 ```
 
-### What's included
+Please see our [documentation][docs] or [examples][] for more in-depth information
+about this library.
 
-RTK Query includes these APIs:
+### Using other libraries of the Maps JavaScript API
 
-- `createApi()`: The core of RTK Query's functionality. It allows you to define a set of endpoints describe how to retrieve data from a series of endpoints, including configuration of how to fetch and transform that data. In most cases, you should use this once per app, with "one API slice per base URL" as a rule of thumb.
-- `fetchBaseQuery()`: A small wrapper around fetch that aims to simplify requests. Intended as the recommended baseQuery to be used in createApi for the majority of users.
-- `<ApiProvider />`: Can be used as a Provider if you do not already have a Redux store.
-- `setupListeners()`: A utility used to enable refetchOnMount and refetchOnReconnect behaviors.
+Besides rendering maps, the Maps JavaScript API has a lot of
+[additional libraries][gmp-libraries] for things like geocoding, routing, the
+Places API, Street View, and a lot more.
 
-See the [**RTK Query Overview**](https://redux-toolkit.js.org/rtk-query/overview) page for more details on what RTK Query is, what problems it solves, and how to use it.
+These libraries are not loaded by default, which is why this module provides
+the [`useMapsLibrary()`][api-use-lib] hook to handle dynamic loading of
+additional libraries.
 
-## Contributing
+For example, if you just want to use the `google.maps.geocoding.Geocoder` class in
+a component and you don't even need a map, it can be implemented like this:
 
-Please refer to our [contributing guide](/CONTRIBUTING.md) to learn about our development process, how to propose bugfixes and improvements, and how to build and test your changes to Redux Toolkit.
+```tsx
+import {useMapsLibrary} from '@vis.gl/react-google-maps';
+
+const MyComponent = () => {
+  // useMapsLibrary loads the geocoding library, it might initially return `null`
+  // if the library hasn't been loaded. Once loaded, it will return the library
+  // object as it would be returned by `await google.maps.importLibrary()`
+  const geocodingLib = useMapsLibrary('geocoding');
+  const geocoder = useMemo(
+    () => geocodingLib && new geocodingLib.Geocoder(),
+    [geocodingLib]
+  );
+
+  useEffect(() => {
+    if (!geocoder) return;
+
+    // now you can use `geocoder.geocode(...)` here
+  }, [geocoder]);
+
+  return <></>;
+};
+
+const App = () => {
+  return (
+    <APIProvider apiKey={'YOUR API KEY HERE'}>
+      <MyComponent />
+    </APIProvider>
+  );
+};
+```
+
+### Using Custom Elements of the Maps JavaScript API
+
+The maps JavaScript API also provides a lot of custom elements like the
+[Places UI Kit][gmp-places-ui-kit] or the [Maps 3D][gmp-maps-3d] elements.
+This library provides the types needed to use these custom elements in a
+TypeScript / React application.
+
+```tsx
+import {useMapsLibrary} from '@vis.gl/react-google-maps';
+
+const My3DMap = (props: My3DMapProps) => {
+  useMapsLibrary('maps3d');
+
+  const {center, heading, tilt, range, roll} = props;
+
+  return (
+    <>
+      <gmp-map-3d
+        center={center}
+        range={range}
+        heading={heading}
+        tilt={tilt}
+        roll={roll}
+        mode="SATELLITE"></gmp-map-3d>
+    </>
+  );
+};
+```
+
+## Examples
+
+Explore our [examples directory on GitHub](./examples) or the
+[examples on our website][examples] for full implementation examples.
+
+## Supported Browsers
+
+Being a library built around the Google Maps JavaScript API, we follow the
+same browser-support policy as the Google Maps Team,
+[available here][gmp-browsersupport].
+Generally, the last two versions of the major browsers are officially supported.
+
+It is not unlikely that browsers even far outside the given
+range will still work. We try our best to support as many browsers and
+versions as reasonably possible, but we won't actively investigate issues
+related to outdated browser versions.
+
+However, if you can suggest small changes that could be made to even
+increase that range, we will be happy to include them, as long as they don't
+negatively affect the supported browsers.
+
+## Terms of Service
+
+`@vis.gl/react-google-maps` uses Google Maps Platform services. Use of Google
+Maps Platform services through this library is subject to the
+[Google Maps Platform Terms of Service][gmp-tos].
+
+This library is not a Google Maps Platform Core Service.
+Therefore, the Google Maps Platform Terms of Service (e.g., Technical
+Support Services, Service Level Agreements, and Deprecation Policy)
+do not apply to this library.
+
+### European Economic Area (EEA) developers
+
+If your billing address is in the European Economic Area, effective on
+8 July 2025, the [Google Maps Platform EEA Terms of Service][gmp-tos-eea]
+will apply to your use of the Services. Functionality varies by region.
+[Learn more][gmp-tos-eea-faq].
+
+## Help and Support
+
+This library is offered via an open source license. It is not governed by the
+Google Maps Platform [Technical Support Services Guidelines][gmp-tssg],
+the [SLA][gmp-sla], or the [Deprecation Policy][gmp-dp] (however, any Google
+Maps Platform services used by this library remain subject to the Google Maps
+Platform Terms of Service).
+
+If you find a bug or have a feature request, please [file an issue][rgm-issues]
+on GitHub. If you would like to get answers to technical questions from
+other Google Maps Platform developers, feel free to open a thread in the
+[discussions section on GitHub][rgm-discuss] or ask a question through one of
+our [developer community channels][gmp-community].
+
+If you'd like to contribute, please check the [Contributing guide][rgm-contrib].
+
+You can also discuss this library on [our Discord server][gmp-discord].
+
+[api-provider]: https://visgl.github.io/react-google-maps/docs/api-reference/components/api-provider
+[api-map]: https://visgl.github.io/react-google-maps/docs/api-reference/components/map
+[api-marker]: https://visgl.github.io/react-google-maps/docs/api-reference/components/marker
+[api-adv-marker]: https://visgl.github.io/react-google-maps/docs/api-reference/components/advanced-marker
+[api-infowindow]: https://visgl.github.io/react-google-maps/docs/api-reference/components/info-window
+[api-circle]: https://visgl.github.io/react-google-maps/docs/api-reference/components/circle
+[api-polyline]: https://visgl.github.io/react-google-maps/docs/api-reference/components/polyline
+[api-polygon]: https://visgl.github.io/react-google-maps/docs/api-reference/components/polygon
+[api-map-3d]: https://visgl.github.io/react-google-maps/docs/api-reference/components/map-3d
+[api-use-lib]: https://visgl.github.io/react-google-maps/docs/api-reference/hooks/use-maps-library
+[docs]: https://visgl.github.io/react-google-maps/docs/
+[examples]: https://visgl.github.io/react-google-maps/examples
+[gmp-services]: https://developers.google.com/maps/documentation/javascript#services
+[gmp-libraries]: https://developers.google.com/maps/documentation/javascript/libraries
+[npm-package]: https://www.npmjs.com/package/@vis.gl/react-google-maps
+[gmp-tos]: https://cloud.google.com/maps-platform/terms
+[gmp-tos-eea]: https://cloud.google.com/terms/maps-platform/eea
+[gmp-tos-eea-faq]: https://developers.google.com/maps/comms/eea/faq
+[gmp-tssg]: https://cloud.google.com/maps-platform/terms/tssg
+[gmp-sla]: https://cloud.google.com/maps-platform/terms/sla
+[gmp-dp]: https://cloud.google.com/maps-platform/terms/other/deprecation-policy
+[rgm-issues]: https://github.com/visgl/react-google-maps/issues
+[rgm-discuss]: https://github.com/visgl/react-google-maps/discussions
+[rgm-contrib]: https://visgl.github.io/react-google-maps/docs/contributing
+[gmp-community]: https://developers.google.com/maps/developer-community
+[gmp-discord]: https://discord.gg/f4hvx8Rp2q
+[gmp-browsersupport]: https://developers.google.com/maps/documentation/javascript/browsersupport
+[gmp-places-ui-kit]: https://developers.google.com/maps/documentation/javascript/places-ui-kit/overview
+[gmp-maps-3d]: https://developers.google.com/maps/documentation/javascript/3d/overview
