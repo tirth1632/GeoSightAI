@@ -3,4 +3,4 @@ function tsRewriteRelativeImportExtensions(t, e) {
     return s ? e ? ".jsx" : ".js" : !r || n && o ? r + n + "." + o.toLowerCase() + "js" : t;
   }) : t;
 }
-module.exports = tsRewriteRelativeImportExtensions, module.exports.__esModule = true, module.exports["default"] = module.exports;
+export { tsRewriteRelativeImportExtensions as default };

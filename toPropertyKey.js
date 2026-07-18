@@ -1,7 +1,7 @@
-var _typeof = require("./typeof.js")["default"];
-var toPrimitive = require("./toPrimitive.js");
+import _typeof from "./typeof.js";
+import toPrimitive from "./toPrimitive.js";
 function toPropertyKey(t) {
   var i = toPrimitive(t, "string");
   return "symbol" == _typeof(i) ? i : i + "";
 }
-module.exports = toPropertyKey, module.exports.__esModule = true, module.exports["default"] = module.exports;
+export { toPropertyKey as default };

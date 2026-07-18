@@ -7,4 +7,4 @@ function _toSetter(t, e, n) {
     }
   });
 }
-module.exports = _toSetter, module.exports.__esModule = true, module.exports["default"] = module.exports;
+export { _toSetter as default };
