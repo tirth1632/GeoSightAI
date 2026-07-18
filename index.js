@@ -3,85 +3,120 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.createConfigItem = createConfigItem;
-exports.createConfigItemAsync = createConfigItemAsync;
-exports.createConfigItemSync = createConfigItemSync;
-Object.defineProperty(exports, "default", {
-  enumerable: true,
-  get: function () {
-    return _full.default;
-  }
-});
-exports.loadOptions = loadOptions;
-exports.loadOptionsAsync = loadOptionsAsync;
-exports.loadOptionsSync = loadOptionsSync;
-exports.loadPartialConfig = loadPartialConfig;
-exports.loadPartialConfigAsync = loadPartialConfigAsync;
-exports.loadPartialConfigSync = loadPartialConfigSync;
-function _gensync() {
-  const data = require("gensync");
-  _gensync = function () {
-    return data;
-  };
-  return data;
-}
-var _full = require("./full.js");
-var _partial = require("./partial.js");
-var _item = require("./item.js");
-var _rewriteStackTrace = require("../errors/rewrite-stack-trace.js");
-const loadPartialConfigRunner = _gensync()(_partial.loadPartialConfig);
-function loadPartialConfigAsync(...args) {
-  return (0, _rewriteStackTrace.beginHiddenCallStack)(loadPartialConfigRunner.async)(...args);
-}
-function loadPartialConfigSync(...args) {
-  return (0, _rewriteStackTrace.beginHiddenCallStack)(loadPartialConfigRunner.sync)(...args);
-}
-function loadPartialConfig(opts, callback) {
-  if (callback !== undefined) {
-    (0, _rewriteStackTrace.beginHiddenCallStack)(loadPartialConfigRunner.errback)(opts, callback);
-  } else if (typeof opts === "function") {
-    (0, _rewriteStackTrace.beginHiddenCallStack)(loadPartialConfigRunner.errback)(undefined, opts);
-  } else {
-    return loadPartialConfigSync(opts);
+exports.default = void 0;
+exports.get = get;
+exports.getDependencies = getDependencies;
+exports.isInternal = isInternal;
+exports.list = void 0;
+exports.minVersion = minVersion;
+var _t = require("@babel/types");
+var _helpersGenerated = require("./helpers-generated.js");
+const {
+  cloneNode,
+  identifier
+} = _t;
+function deep(obj, path, value) {
+  try {
+    const parts = path.split(".");
+    let last = parts.shift();
+    while (parts.length > 0) {
+      obj = obj[last];
+      last = parts.shift();
+    }
+    if (arguments.length > 2) {
+      obj[last] = value;
+    } else {
+      return obj[last];
+    }
+  } catch (e) {
+    e.message += ` (when accessing ${path})`;
+    throw e;
   }
 }
-function* loadOptionsImpl(opts) {
-  var _config$options;
-  const config = yield* (0, _full.default)(opts);
-  return (_config$options = config == null ? void 0 : config.options) != null ? _config$options : null;
-}
-const loadOptionsRunner = _gensync()(loadOptionsImpl);
-function loadOptionsAsync(...args) {
-  return (0, _rewriteStackTrace.beginHiddenCallStack)(loadOptionsRunner.async)(...args);
-}
-function loadOptionsSync(...args) {
-  return (0, _rewriteStackTrace.beginHiddenCallStack)(loadOptionsRunner.sync)(...args);
-}
-function loadOptions(opts, callback) {
-  if (callback !== undefined) {
-    (0, _rewriteStackTrace.beginHiddenCallStack)(loadOptionsRunner.errback)(opts, callback);
-  } else if (typeof opts === "function") {
-    (0, _rewriteStackTrace.beginHiddenCallStack)(loadOptionsRunner.errback)(undefined, opts);
-  } else {
-    return loadOptionsSync(opts);
+function permuteHelperAST(ast, metadata, bindingName, localBindings, getDependency, adjustAst) {
+  const {
+    locals,
+    dependencies,
+    exportBindingAssignments,
+    exportName
+  } = metadata;
+  const bindings = new Set(localBindings || []);
+  if (bindingName) bindings.add(bindingName);
+  for (const [name, paths] of (Object.entries || (o => Object.keys(o).map(k => [k, o[k]])))(locals)) {
+    let newName = name;
+    if (bindingName && name === exportName) {
+      newName = bindingName;
+    } else {
+      while (bindings.has(newName)) newName = "_" + newName;
+    }
+    if (newName !== name) {
+      for (const path of paths) {
+        deep(ast, path, identifier(newName));
+      }
+    }
   }
-}
-const createConfigItemRunner = _gensync()(_item.createConfigItem);
-function createConfigItemAsync(...args) {
-  return (0, _rewriteStackTrace.beginHiddenCallStack)(createConfigItemRunner.async)(...args);
-}
-function createConfigItemSync(...args) {
-  return (0, _rewriteStackTrace.beginHiddenCallStack)(createConfigItemRunner.sync)(...args);
-}
-function createConfigItem(target, options, callback) {
-  if (callback !== undefined) {
-    (0, _rewriteStackTrace.beginHiddenCallStack)(createConfigItemRunner.errback)(target, options, callback);
-  } else if (typeof options === "function") {
-    (0, _rewriteStackTrace.beginHiddenCallStack)(createConfigItemRunner.errback)(target, undefined, callback);
-  } else {
-    return createConfigItemSync(target, options);
+  for (const [name, paths] of (Object.entries || (o => Object.keys(o).map(k => [k, o[k]])))(dependencies)) {
+    const ref = typeof getDependency === "function" && getDependency(name) || identifier(name);
+    for (const path of paths) {
+      deep(ast, path, cloneNode(ref));
+    }
   }
+  adjustAst == null || adjustAst(ast, exportName, map => {
+    exportBindingAssignments.forEach(p => deep(ast, p, map(deep(ast, p))));
+  });
 }
-0 && 0;
+const helperData = Object.create(null);
+function loadHelper(name) {
+  if (!helperData[name]) {
+    const helper = _helpersGenerated.default[name];
+    if (!helper) {
+      throw Object.assign(new ReferenceError(`Unknown helper ${name}`), {
+        code: "BABEL_HELPER_UNKNOWN",
+        helper: name
+      });
+    }
+    helperData[name] = {
+      minVersion: helper.minVersion,
+      build(getDependency, bindingName, localBindings, adjustAst) {
+        const ast = helper.ast();
+        permuteHelperAST(ast, helper.metadata, bindingName, localBindings, getDependency, adjustAst);
+        return {
+          nodes: ast.body,
+          globals: helper.metadata.globals
+        };
+      },
+      getDependencies() {
+        return Object.keys(helper.metadata.dependencies);
+      }
+    };
+  }
+  return helperData[name];
+}
+function get(name, getDependency, bindingName, localBindings, adjustAst) {
+  if (typeof bindingName === "object") {
+    const id = bindingName;
+    if ((id == null ? void 0 : id.type) === "Identifier") {
+      bindingName = id.name;
+    } else {
+      bindingName = undefined;
+    }
+  }
+  return loadHelper(name).build(getDependency, bindingName, localBindings, adjustAst);
+}
+function minVersion(name) {
+  return loadHelper(name).minVersion;
+}
+function getDependencies(name) {
+  return loadHelper(name).getDependencies();
+}
+function isInternal(name) {
+  var _helpers$name;
+  return (_helpers$name = _helpersGenerated.default[name]) == null ? void 0 : _helpers$name.metadata.internal;
+}
+exports.ensure = name => {
+  loadHelper(name);
+};
+const list = exports.list = Object.keys(_helpersGenerated.default).map(name => name.replace(/^_/, ""));
+var _default = exports.default = get;
 
 //# sourceMappingURL=index.js.map
