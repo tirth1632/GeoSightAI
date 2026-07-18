@@ -3,4 +3,4 @@ function _arrayLikeToArray(r, a) {
   for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e];
   return n;
 }
-module.exports = _arrayLikeToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;
+export { _arrayLikeToArray as default };

@@ -24,4 +24,4 @@ function _importDeferProxy(e) {
     setPrototypeOf: constValue(!1)
   });
 }
-module.exports = _importDeferProxy, module.exports.__esModule = true, module.exports["default"] = module.exports;
+export { _importDeferProxy as default };

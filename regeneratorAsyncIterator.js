@@ -1,5 +1,5 @@
-var OverloadYield = require("./OverloadYield.js");
-var regeneratorDefine = require("./regeneratorDefine.js");
+import OverloadYield from "./OverloadYield.js";
+import regeneratorDefine from "./regeneratorDefine.js";
 function AsyncIterator(t, e) {
   function n(r, o, i, f) {
     try {
@@ -30,4 +30,4 @@ function AsyncIterator(t, e) {
     return r = r ? r.then(f, f) : f();
   }, !0);
 }
-module.exports = AsyncIterator, module.exports.__esModule = true, module.exports["default"] = module.exports;
+export { AsyncIterator as default };

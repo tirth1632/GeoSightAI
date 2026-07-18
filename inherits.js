@@ -1,4 +1,4 @@
-var setPrototypeOf = require("./setPrototypeOf.js");
+import setPrototypeOf from "./setPrototypeOf.js";
 function _inherits(t, e) {
   if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function");
   t.prototype = Object.create(e && e.prototype, {
@@ -11,4 +11,4 @@ function _inherits(t, e) {
     writable: !1
   }), e && setPrototypeOf(t, e);
 }
-module.exports = _inherits, module.exports.__esModule = true, module.exports["default"] = module.exports;
+export { _inherits as default };

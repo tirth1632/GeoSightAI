@@ -7,4 +7,4 @@ function _regeneratorKeys(e) {
     return e.done = !0, e;
   };
 }
-module.exports = _regeneratorKeys, module.exports.__esModule = true, module.exports["default"] = module.exports;
+export { _regeneratorKeys as default };

@@ -7,4 +7,4 @@ function _objectWithoutPropertiesLoose(r, e) {
   }
   return t;
 }
-module.exports = _objectWithoutPropertiesLoose, module.exports.__esModule = true, module.exports["default"] = module.exports;
+export { _objectWithoutPropertiesLoose as default };

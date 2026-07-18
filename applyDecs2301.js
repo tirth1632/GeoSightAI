@@ -1,7 +1,7 @@
-var _typeof = require("./typeof.js")["default"];
-var checkInRHS = require("./checkInRHS.js");
-var setFunctionName = require("./setFunctionName.js");
-var toPropertyKey = require("./toPropertyKey.js");
+import _typeof from "./typeof.js";
+import checkInRHS from "./checkInRHS.js";
+import setFunctionName from "./setFunctionName.js";
+import toPropertyKey from "./toPropertyKey.js";
 function applyDecs2301Factory() {
   function createAddInitializerMethod(e, t) {
     return function (r) {
@@ -217,6 +217,6 @@ function applyDecs2301Factory() {
   };
 }
 function applyDecs2301(e, t, r, n) {
-  return (module.exports = applyDecs2301 = applyDecs2301Factory(), module.exports.__esModule = true, module.exports["default"] = module.exports)(e, t, r, n);
+  return (applyDecs2301 = applyDecs2301Factory())(e, t, r, n);
 }
-module.exports = applyDecs2301, module.exports.__esModule = true, module.exports["default"] = module.exports;
+export { applyDecs2301 as default };

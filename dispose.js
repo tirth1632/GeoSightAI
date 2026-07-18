@@ -25,4 +25,4 @@ function _dispose(r, e, s) {
   }
   return next();
 }
-module.exports = _dispose, module.exports.__esModule = true, module.exports["default"] = module.exports;
+export { _dispose as default };

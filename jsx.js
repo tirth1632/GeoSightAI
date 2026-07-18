@@ -19,4 +19,4 @@ function _createRawReactElement(e, r, E, l) {
     _owner: null
   };
 }
-module.exports = _createRawReactElement, module.exports.__esModule = true, module.exports["default"] = module.exports;
+export { _createRawReactElement as default };

@@ -1,5 +1,5 @@
-var isNativeReflectConstruct = require("./isNativeReflectConstruct.js");
-var setPrototypeOf = require("./setPrototypeOf.js");
+import isNativeReflectConstruct from "./isNativeReflectConstruct.js";
+import setPrototypeOf from "./setPrototypeOf.js";
 function _construct(t, e, r) {
   if (isNativeReflectConstruct()) return Reflect.construct.apply(null, arguments);
   var o = [null];
@@ -7,4 +7,4 @@ function _construct(t, e, r) {
   var p = new (t.bind.apply(t, o))();
   return r && setPrototypeOf(p, r.prototype), p;
 }
-module.exports = _construct, module.exports.__esModule = true, module.exports["default"] = module.exports;
+export { _construct as default };

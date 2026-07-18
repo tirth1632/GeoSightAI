@@ -1,10 +1,10 @@
-var OverloadYield = require("./OverloadYield.js");
-var regenerator = require("./regenerator.js");
-var regeneratorAsync = require("./regeneratorAsync.js");
-var regeneratorAsyncGen = require("./regeneratorAsyncGen.js");
-var regeneratorAsyncIterator = require("./regeneratorAsyncIterator.js");
-var regeneratorKeys = require("./regeneratorKeys.js");
-var regeneratorValues = require("./regeneratorValues.js");
+import OverloadYield from "./OverloadYield.js";
+import regenerator from "./regenerator.js";
+import regeneratorAsync from "./regeneratorAsync.js";
+import regeneratorAsyncGen from "./regeneratorAsyncGen.js";
+import regeneratorAsyncIterator from "./regeneratorAsyncIterator.js";
+import regeneratorKeys from "./regeneratorKeys.js";
+import regeneratorValues from "./regeneratorValues.js";
 function _regeneratorRuntime() {
   "use strict";
 
@@ -55,7 +55,7 @@ function _regeneratorRuntime() {
       }
     };
   }
-  return (module.exports = _regeneratorRuntime = function _regeneratorRuntime() {
+  return (_regeneratorRuntime = function _regeneratorRuntime() {
     return {
       wrap: function wrap(e, t, n, o) {
         return r.w(a(e), t, n, o && o.reverse());
@@ -72,6 +72,6 @@ function _regeneratorRuntime() {
       keys: regeneratorKeys,
       values: regeneratorValues
     };
-  }, module.exports.__esModule = true, module.exports["default"] = module.exports)();
+  })();
 }
-module.exports = _regeneratorRuntime, module.exports.__esModule = true, module.exports["default"] = module.exports;
+export { _regeneratorRuntime as default };

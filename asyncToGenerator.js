@@ -23,4 +23,4 @@ function _asyncToGenerator(n) {
     });
   };
 }
-module.exports = _asyncToGenerator, module.exports.__esModule = true, module.exports["default"] = module.exports;
+export { _asyncToGenerator as default };

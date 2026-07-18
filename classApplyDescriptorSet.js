@@ -4,4 +4,4 @@ function _classApplyDescriptorSet(e, t, l) {
     t.value = l;
   }
 }
-module.exports = _classApplyDescriptorSet, module.exports.__esModule = true, module.exports["default"] = module.exports;
+export { _classApplyDescriptorSet as default };

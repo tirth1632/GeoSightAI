@@ -1,4 +1,4 @@
-var defineProperty = require("./defineProperty.js");
+import defineProperty from "./defineProperty.js";
 function _objectSpread(e) {
   for (var r = 1; r < arguments.length; r++) {
     var t = null != arguments[r] ? Object(arguments[r]) : {},
@@ -11,4 +11,4 @@ function _objectSpread(e) {
   }
   return e;
 }
-module.exports = _objectSpread, module.exports.__esModule = true, module.exports["default"] = module.exports;
+export { _objectSpread as default };

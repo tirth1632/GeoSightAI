@@ -1,4 +1,4 @@
-var unsupportedIterableToArray = require("./unsupportedIterableToArray.js");
+import unsupportedIterableToArray from "./unsupportedIterableToArray.js";
 function _createForOfIteratorHelperLoose(r, e) {
   var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
   if (t) return (t = t.call(r)).next.bind(t);
@@ -16,4 +16,4 @@ function _createForOfIteratorHelperLoose(r, e) {
   }
   throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.");
 }
-module.exports = _createForOfIteratorHelperLoose, module.exports.__esModule = true, module.exports["default"] = module.exports;
+export { _createForOfIteratorHelperLoose as default };

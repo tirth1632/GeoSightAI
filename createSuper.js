@@ -1,6 +1,6 @@
-var getPrototypeOf = require("./getPrototypeOf.js");
-var isNativeReflectConstruct = require("./isNativeReflectConstruct.js");
-var possibleConstructorReturn = require("./possibleConstructorReturn.js");
+import getPrototypeOf from "./getPrototypeOf.js";
+import isNativeReflectConstruct from "./isNativeReflectConstruct.js";
+import possibleConstructorReturn from "./possibleConstructorReturn.js";
 function _createSuper(t) {
   var r = isNativeReflectConstruct();
   return function () {
@@ -13,4 +13,4 @@ function _createSuper(t) {
     return possibleConstructorReturn(this, e);
   };
 }
-module.exports = _createSuper, module.exports.__esModule = true, module.exports["default"] = module.exports;
+export { _createSuper as default };

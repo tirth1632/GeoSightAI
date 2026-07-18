@@ -5,4 +5,4 @@ function _defineAccessor(e, r, n, t) {
   };
   return c[e] = t, Object.defineProperty(r, n, c);
 }
-module.exports = _defineAccessor, module.exports.__esModule = true, module.exports["default"] = module.exports;
+export { _defineAccessor as default };

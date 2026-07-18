@@ -9,4 +9,4 @@ function _defineEnumerableProperties(e, r) {
   }
   return e;
 }
-module.exports = _defineEnumerableProperties, module.exports.__esModule = true, module.exports["default"] = module.exports;
+export { _defineEnumerableProperties as default };

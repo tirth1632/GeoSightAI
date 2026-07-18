@@ -1,5 +1,5 @@
-var toArray = require("./toArray.js");
-var toPropertyKey = require("./toPropertyKey.js");
+import toArray from "./toArray.js";
+import toPropertyKey from "./toPropertyKey.js";
 function _decorate(e, r, t, i) {
   var o = _getDecoratorsApi();
   if (i) for (var n = 0; n < i.length; n++) o = i[n](o);
@@ -247,4 +247,4 @@ function _optionalCallableProperty(e, r) {
   if (void 0 !== t && "function" != typeof t) throw new TypeError("Expected '" + r + "' to be a function");
   return t;
 }
-module.exports = _decorate, module.exports.__esModule = true, module.exports["default"] = module.exports;
+export { _decorate as default };

@@ -25,4 +25,4 @@ function _iterableToArrayLimit(r, l) {
     return a;
   }
 }
-module.exports = _iterableToArrayLimit, module.exports.__esModule = true, module.exports["default"] = module.exports;
+export { _iterableToArrayLimit as default };

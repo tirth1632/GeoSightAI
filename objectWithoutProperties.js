@@ -1,4 +1,4 @@
-var objectWithoutPropertiesLoose = require("./objectWithoutPropertiesLoose.js");
+import objectWithoutPropertiesLoose from "./objectWithoutPropertiesLoose.js";
 function _objectWithoutProperties(e, t) {
   if (null == e) return {};
   var o,
@@ -10,4 +10,4 @@ function _objectWithoutProperties(e, t) {
   }
   return i;
 }
-module.exports = _objectWithoutProperties, module.exports.__esModule = true, module.exports["default"] = module.exports;
+export { _objectWithoutProperties as default };

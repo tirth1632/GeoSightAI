@@ -1,5 +1,5 @@
-var checkPrivateRedeclaration = require("./checkPrivateRedeclaration.js");
+import checkPrivateRedeclaration from "./checkPrivateRedeclaration.js";
 function _classPrivateMethodInitSpec(e, a) {
   checkPrivateRedeclaration(e, a), a.add(e);
 }
-module.exports = _classPrivateMethodInitSpec, module.exports.__esModule = true, module.exports["default"] = module.exports;
+export { _classPrivateMethodInitSpec as default };
