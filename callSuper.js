@@ -1,15 +1,7 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _callSuper;
-var _getPrototypeOf = require("./getPrototypeOf.js");
-var _isNativeReflectConstruct = require("./isNativeReflectConstruct.js");
-var _possibleConstructorReturn = require("./possibleConstructorReturn.js");
-function _callSuper(_this, derived, args) {
-  derived = (0, _getPrototypeOf.default)(derived);
-  return (0, _possibleConstructorReturn.default)(_this, (0, _isNativeReflectConstruct.default)() ? Reflect.construct(derived, args || [], (0, _getPrototypeOf.default)(_this).constructor) : derived.apply(_this, args));
+var getPrototypeOf = require("./getPrototypeOf.js");
+var isNativeReflectConstruct = require("./isNativeReflectConstruct.js");
+var possibleConstructorReturn = require("./possibleConstructorReturn.js");
+function _callSuper(t, o, e) {
+  return o = getPrototypeOf(o), possibleConstructorReturn(t, isNativeReflectConstruct() ? Reflect.construct(o, e || [], getPrototypeOf(t).constructor) : o.apply(t, e));
 }
-
-//# sourceMappingURL=callSuper.js.map
+module.exports = _callSuper, module.exports.__esModule = true, module.exports["default"] = module.exports;

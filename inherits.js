@@ -1,25 +1,14 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _inherits;
-var _setPrototypeOf = require("./setPrototypeOf.js");
-function _inherits(subClass, superClass) {
-  if (typeof superClass !== "function" && superClass !== null) {
-    throw new TypeError("Super expression must either be null or a function");
-  }
-  subClass.prototype = Object.create(superClass && superClass.prototype, {
+var setPrototypeOf = require("./setPrototypeOf.js");
+function _inherits(t, e) {
+  if ("function" != typeof e && null !== e) throw new TypeError("Super expression must either be null or a function");
+  t.prototype = Object.create(e && e.prototype, {
     constructor: {
-      value: subClass,
-      writable: true,
-      configurable: true
+      value: t,
+      writable: !0,
+      configurable: !0
     }
-  });
-  Object.defineProperty(subClass, "prototype", {
-    writable: false
-  });
-  if (superClass) (0, _setPrototypeOf.default)(subClass, superClass);
+  }), Object.defineProperty(t, "prototype", {
+    writable: !1
+  }), e && setPrototypeOf(t, e);
 }
-
-//# sourceMappingURL=inherits.js.map
+module.exports = _inherits, module.exports.__esModule = true, module.exports["default"] = module.exports;

@@ -1,18 +1,7 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _classApplyDescriptorSet;
-function _classApplyDescriptorSet(receiver, descriptor, value) {
-  if (descriptor.set) {
-    descriptor.set.call(receiver, value);
-  } else {
-    if (!descriptor.writable) {
-      throw new TypeError("attempted to set read only private field");
-    }
-    descriptor.value = value;
+function _classApplyDescriptorSet(e, t, l) {
+  if (t.set) t.set.call(e, l);else {
+    if (!t.writable) throw new TypeError("attempted to set read only private field");
+    t.value = l;
   }
 }
-
-//# sourceMappingURL=classApplyDescriptorSet.js.map
+module.exports = _classApplyDescriptorSet, module.exports.__esModule = true, module.exports["default"] = module.exports;

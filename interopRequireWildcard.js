@@ -1,44 +1,22 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _interopRequireWildcard;
-function _interopRequireWildcard(obj, nodeInterop) {
-  if (typeof WeakMap === "function") {
-    var cacheBabelInterop = new WeakMap();
-    var cacheNodeInterop = new WeakMap();
-  }
-  return (exports.default = _interopRequireWildcard = function (obj, nodeInterop) {
-    if (!nodeInterop && obj && obj.__esModule) {
-      return obj;
+var _typeof = require("./typeof.js")["default"];
+function _interopRequireWildcard(e, t) {
+  if ("function" == typeof WeakMap) var r = new WeakMap(),
+    n = new WeakMap();
+  return (module.exports = _interopRequireWildcard = function _interopRequireWildcard(e, t) {
+    if (!t && e && e.__esModule) return e;
+    var o,
+      i,
+      f = {
+        __proto__: null,
+        "default": e
+      };
+    if (null === e || "object" != _typeof(e) && "function" != typeof e) return f;
+    if (o = t ? n : r) {
+      if (o.has(e)) return o.get(e);
+      o.set(e, f);
     }
-    var _;
-    var newObj = {
-      __proto__: null,
-      default: obj
-    };
-    var desc;
-    if (obj === null || typeof obj !== "object" && typeof obj !== "function") {
-      return newObj;
-    }
-    _ = nodeInterop ? cacheNodeInterop : cacheBabelInterop;
-    if (_) {
-      if (_.has(obj)) return _.get(obj);
-      _.set(obj, newObj);
-    }
-    for (const key in obj) {
-      if (key !== "default" && {}.hasOwnProperty.call(obj, key)) {
-        desc = (_ = Object.defineProperty) && Object.getOwnPropertyDescriptor(obj, key);
-        if (desc && (desc.get || desc.set)) {
-          _(newObj, key, desc);
-        } else {
-          newObj[key] = obj[key];
-        }
-      }
-    }
-    return newObj;
-  })(obj, nodeInterop);
+    for (var _t in e) "default" !== _t && {}.hasOwnProperty.call(e, _t) && ((i = (o = Object.defineProperty) && Object.getOwnPropertyDescriptor(e, _t)) && (i.get || i.set) ? o(f, _t, i) : f[_t] = e[_t]);
+    return f;
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports)(e, t);
 }
-
-//# sourceMappingURL=interopRequireWildcard.js.map
+module.exports = _interopRequireWildcard, module.exports.__esModule = true, module.exports["default"] = module.exports;

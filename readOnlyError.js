@@ -1,11 +1,4 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _readOnlyError;
-function _readOnlyError(name) {
-  throw new TypeError('"' + name + '" is read-only');
+function _readOnlyError(r) {
+  throw new TypeError('"' + r + '" is read-only');
 }
-
-//# sourceMappingURL=readOnlyError.js.map
+module.exports = _readOnlyError, module.exports.__esModule = true, module.exports["default"] = module.exports;

@@ -1,188 +1,89 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _regenerator;
-var _regeneratorDefine = require("./regeneratorDefine.js");
+var regeneratorDefine = require("./regeneratorDefine.js");
 function _regenerator() {
-  var undefined;
-  var $Symbol = typeof Symbol === "function" ? Symbol : {};
-  var iteratorSymbol = $Symbol.iterator || "@@iterator";
-  var toStringTagSymbol = $Symbol.toStringTag || "@@toStringTag";
-  var _;
-  function wrap(innerFn, outerFn, self, tryLocsList) {
-    var protoGenerator = outerFn && outerFn.prototype instanceof Generator ? outerFn : Generator;
-    var generator = Object.create(protoGenerator.prototype);
-    (0, _regeneratorDefine.default)(generator, "_invoke", makeInvokeMethod(innerFn, self, tryLocsList), true);
-    return generator;
+  /*! regenerator-runtime -- Copyright (c) 2014-present, Facebook, Inc. -- license (MIT): https://github.com/babel/babel/blob/main/packages/babel-helpers/LICENSE */
+  var e,
+    t,
+    r = "function" == typeof Symbol ? Symbol : {},
+    n = r.iterator || "@@iterator",
+    o = r.toStringTag || "@@toStringTag";
+  function i(r, n, o, i) {
+    var c = n && n.prototype instanceof Generator ? n : Generator,
+      u = Object.create(c.prototype);
+    return regeneratorDefine(u, "_invoke", function (r, n, o) {
+      var i,
+        c,
+        u,
+        f = 0,
+        p = o || [],
+        y = !1,
+        G = {
+          p: 0,
+          n: 0,
+          v: e,
+          a: d,
+          f: d.bind(e, 4),
+          d: function d(t, r) {
+            return i = t, c = 0, u = e, G.n = r, a;
+          }
+        };
+      function d(r, n) {
+        for (c = r, u = n, t = 0; !y && f && !o && t < p.length; t++) {
+          var o,
+            i = p[t],
+            d = G.p,
+            l = i[2];
+          r > 3 ? (o = l === n) && (u = i[(c = i[4]) ? 5 : (c = 3, 3)], i[4] = i[5] = e) : i[0] <= d && ((o = r < 2 && d < i[1]) ? (c = 0, G.v = n, G.n = i[1]) : d < l && (o = r < 3 || i[0] > n || n > l) && (i[4] = r, i[5] = n, G.n = l, c = 0));
+        }
+        if (o || r > 1) return a;
+        throw y = !0, n;
+      }
+      return function (o, p, l) {
+        if (f > 1) throw TypeError("Generator is already running");
+        for (y && 1 === p && d(p, l), c = p, u = l; (t = c < 2 ? e : u) || !y;) {
+          i || (c ? c < 3 ? (c > 1 && (G.n = -1), d(c, u)) : G.n = u : G.v = u);
+          try {
+            if (f = 2, i) {
+              if (c || (o = "next"), t = i[o]) {
+                if (!(t = t.call(i, u))) throw TypeError("iterator result is not an object");
+                if (!t.done) return t;
+                u = t.value, c < 2 && (c = 0);
+              } else 1 === c && (t = i["return"]) && t.call(i), c < 2 && (u = TypeError("The iterator does not provide a '" + o + "' method"), c = 1);
+              i = e;
+            } else if ((t = (y = G.n < 0) ? u : r.call(n, G)) !== a) break;
+          } catch (t) {
+            i = e, c = 1, u = t;
+          } finally {
+            f = 1;
+          }
+        }
+        return {
+          value: t,
+          done: y
+        };
+      };
+    }(r, o, i), !0), u;
   }
-  var ContinueSentinel = {};
+  var a = {};
   function Generator() {}
   function GeneratorFunction() {}
   function GeneratorFunctionPrototype() {}
-  _ = Object.getPrototypeOf;
-  var IteratorPrototype = [][iteratorSymbol] ? _(_([][iteratorSymbol]())) : ((0, _regeneratorDefine.default)(_ = {}, iteratorSymbol, function () {
+  t = Object.getPrototypeOf;
+  var c = [][n] ? t(t([][n]())) : (regeneratorDefine(t = {}, n, function () {
+      return this;
+    }), t),
+    u = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(c);
+  function f(e) {
+    return Object.setPrototypeOf ? Object.setPrototypeOf(e, GeneratorFunctionPrototype) : (e.__proto__ = GeneratorFunctionPrototype, regeneratorDefine(e, o, "GeneratorFunction")), e.prototype = Object.create(u), e;
+  }
+  return GeneratorFunction.prototype = GeneratorFunctionPrototype, regeneratorDefine(u, "constructor", GeneratorFunctionPrototype), regeneratorDefine(GeneratorFunctionPrototype, "constructor", GeneratorFunction), GeneratorFunction.displayName = "GeneratorFunction", regeneratorDefine(GeneratorFunctionPrototype, o, "GeneratorFunction"), regeneratorDefine(u), regeneratorDefine(u, o, "Generator"), regeneratorDefine(u, n, function () {
     return this;
-  }), _);
-  var Gp = GeneratorFunctionPrototype.prototype = Generator.prototype = Object.create(IteratorPrototype);
-  GeneratorFunction.prototype = GeneratorFunctionPrototype;
-  (0, _regeneratorDefine.default)(Gp, "constructor", GeneratorFunctionPrototype);
-  (0, _regeneratorDefine.default)(GeneratorFunctionPrototype, "constructor", GeneratorFunction);
-  GeneratorFunction.displayName = "GeneratorFunction";
-  (0, _regeneratorDefine.default)(GeneratorFunctionPrototype, toStringTagSymbol, "GeneratorFunction");
-  (0, _regeneratorDefine.default)(Gp);
-  (0, _regeneratorDefine.default)(Gp, toStringTagSymbol, "Generator");
-  (0, _regeneratorDefine.default)(Gp, iteratorSymbol, function () {
-    return this;
-  });
-  (0, _regeneratorDefine.default)(Gp, "toString", function () {
+  }), regeneratorDefine(u, "toString", function () {
     return "[object Generator]";
-  });
-  function mark(genFun) {
-    if (Object.setPrototypeOf) {
-      Object.setPrototypeOf(genFun, GeneratorFunctionPrototype);
-    } else {
-      genFun.__proto__ = GeneratorFunctionPrototype;
-      (0, _regeneratorDefine.default)(genFun, toStringTagSymbol, "GeneratorFunction");
-    }
-    genFun.prototype = Object.create(Gp);
-    return genFun;
-  }
-  function makeInvokeMethod(innerFn, self, tryLocsList) {
-    var state = 0;
-    function invoke(_methodName, _method, _arg) {
-      if (state > 1) {
-        throw TypeError("Generator is already running");
-      } else if (done) {
-        if (_method === 1) {
-          Context_dispatchExceptionOrFinishOrAbrupt(_method, _arg);
-        }
-      }
-      method = _method;
-      arg = _arg;
-      while ((_ = method < 2 ? undefined : arg) || !done) {
-        if (!delegateIterator) {
-          if (!method) {
-            ctx.v = arg;
-          } else if (method < 3) {
-            if (method > 1) ctx.n = -1;
-            Context_dispatchExceptionOrFinishOrAbrupt(method, arg);
-          } else {
-            ctx.n = arg;
-          }
-        }
-        try {
-          state = 2;
-          if (delegateIterator) {
-            if (!method) _methodName = "next";
-            if (_ = delegateIterator[_methodName]) {
-              if (!(_ = _.call(delegateIterator, arg))) {
-                throw TypeError("iterator result is not an object");
-              }
-              if (!_.done) {
-                return _;
-              }
-              arg = _.value;
-              if (method < 2) {
-                method = 0;
-              }
-            } else {
-              if (method === 1 && (_ = delegateIterator["return"])) {
-                _.call(delegateIterator);
-              }
-              if (method < 2) {
-                arg = TypeError("The iterator does not provide a '" + _methodName + "' method");
-                method = 1;
-              }
-            }
-            delegateIterator = undefined;
-          } else {
-            if (done = ctx.n < 0) {
-              _ = arg;
-            } else {
-              _ = innerFn.call(self, ctx);
-            }
-            if (_ !== ContinueSentinel) {
-              break;
-            }
-          }
-        } catch (e) {
-          delegateIterator = undefined;
-          method = 1;
-          arg = e;
-        } finally {
-          state = 1;
-        }
-      }
-      return {
-        value: _,
-        done: done
-      };
-    }
-    var tryEntries = tryLocsList || [];
-    var done = false;
-    var delegateIterator;
-    var method;
-    var arg;
-    var ctx = {
-      p: 0,
-      n: 0,
-      v: undefined,
-      a: Context_dispatchExceptionOrFinishOrAbrupt,
-      f: Context_dispatchExceptionOrFinishOrAbrupt.bind(undefined, 4),
-      d: function (iterable, nextLoc) {
-        delegateIterator = iterable;
-        method = 0;
-        arg = undefined;
-        ctx.n = nextLoc;
-        return ContinueSentinel;
-      }
-    };
-    function Context_dispatchExceptionOrFinishOrAbrupt(_type, _arg) {
-      method = _type;
-      arg = _arg;
-      for (_ = 0; !done && state && !shouldReturn && _ < tryEntries.length; _++) {
-        var entry = tryEntries[_];
-        var prev = ctx.p;
-        var finallyLoc = entry[2];
-        var shouldReturn;
-        if (_type > 3) {
-          if (shouldReturn = finallyLoc === _arg) {
-            arg = entry[(method = entry[4]) ? 5 : (method = 3, 3)];
-            entry[4] = entry[5] = undefined;
-          }
-        } else {
-          if (entry[0] <= prev) {
-            if (shouldReturn = _type < 2 && prev < entry[1]) {
-              method = 0;
-              ctx.v = _arg;
-              ctx.n = entry[1];
-            } else if (prev < finallyLoc) {
-              if (shouldReturn = _type < 3 || entry[0] > _arg || _arg > finallyLoc) {
-                entry[4] = _type;
-                entry[5] = _arg;
-                ctx.n = finallyLoc;
-                method = 0;
-              }
-            }
-          }
-        }
-      }
-      if (shouldReturn || _type > 1) {
-        return ContinueSentinel;
-      }
-      done = true;
-      throw _arg;
-    }
-    return invoke;
-  }
-  return (exports.default = _regenerator = function () {
+  }), (module.exports = _regenerator = function _regenerator() {
     return {
-      w: wrap,
-      m: mark
+      w: i,
+      m: f
     };
-  })();
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports)();
 }
-
-//# sourceMappingURL=regenerator.js.map
+module.exports = _regenerator, module.exports.__esModule = true, module.exports["default"] = module.exports;

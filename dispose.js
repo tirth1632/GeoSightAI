@@ -1,47 +1,28 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _dispose;
-function dispose_SuppressedError(error, suppressed) {
-  if (typeof SuppressedError !== "undefined") {
-    dispose_SuppressedError = SuppressedError;
-  } else {
-    dispose_SuppressedError = function SuppressedError(error, suppressed) {
-      this.suppressed = suppressed;
-      this.error = error;
-      this.stack = new Error().stack;
-    };
-    dispose_SuppressedError.prototype = Object.create(Error.prototype, {
-      constructor: {
-        value: dispose_SuppressedError,
-        writable: true,
-        configurable: true
-      }
-    });
-  }
-  return new dispose_SuppressedError(error, suppressed);
-}
-function _dispose(stack, error, hasError) {
-  function next() {
-    while (stack.length > 0) {
-      try {
-        var r = stack.pop();
-        var p = r.d.call(r.v);
-        if (r.a) return Promise.resolve(p).then(next, err);
-      } catch (e) {
-        return err(e);
-      }
+function dispose_SuppressedError(r, e) {
+  return "undefined" != typeof SuppressedError ? dispose_SuppressedError = SuppressedError : (dispose_SuppressedError = function dispose_SuppressedError(r, e) {
+    this.suppressed = e, this.error = r, this.stack = Error().stack;
+  }, dispose_SuppressedError.prototype = Object.create(Error.prototype, {
+    constructor: {
+      value: dispose_SuppressedError,
+      writable: !0,
+      configurable: !0
     }
-    if (hasError) throw error;
+  })), new dispose_SuppressedError(r, e);
+}
+function _dispose(r, e, s) {
+  function next() {
+    for (; r.length > 0;) try {
+      var o = r.pop(),
+        p = o.d.call(o.v);
+      if (o.a) return Promise.resolve(p).then(next, err);
+    } catch (r) {
+      return err(r);
+    }
+    if (s) throw e;
   }
-  function err(e) {
-    error = hasError ? new dispose_SuppressedError(error, e) : e;
-    hasError = true;
-    return next();
+  function err(r) {
+    return e = s ? new dispose_SuppressedError(e, r) : r, s = !0, next();
   }
   return next();
 }
-
-//# sourceMappingURL=dispose.js.map
+module.exports = _dispose, module.exports.__esModule = true, module.exports["default"] = module.exports;

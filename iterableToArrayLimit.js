@@ -1,41 +1,28 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _iterableToArrayLimit;
-function _iterableToArrayLimit(arr, i) {
-  var iterator = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"];
-  if (iterator == null) return;
-  var _arr = [];
-  var iteratorNormalCompletion = true;
-  var didIteratorError = false;
-  var step, iteratorError, next, _return;
-  try {
-    next = (iterator = iterator.call(arr)).next;
-    if (i === 0) {
-      if (Object(iterator) !== iterator) return;
-      iteratorNormalCompletion = false;
-    } else {
-      for (; !(iteratorNormalCompletion = (step = next.call(iterator)).done); iteratorNormalCompletion = true) {
-        _arr.push(step.value);
-        if (_arr.length === i) break;
-      }
-    }
-  } catch (err) {
-    didIteratorError = true;
-    iteratorError = err;
-  } finally {
+function _iterableToArrayLimit(r, l) {
+  var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"];
+  if (null != t) {
+    var e,
+      n,
+      i,
+      u,
+      a = [],
+      f = !0,
+      o = !1;
     try {
-      if (!iteratorNormalCompletion && iterator["return"] != null) {
-        _return = iterator["return"]();
-        if (Object(_return) !== _return) return;
-      }
+      if (i = (t = t.call(r)).next, 0 === l) {
+        if (Object(t) !== t) return;
+        f = !1;
+      } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0);
+    } catch (r) {
+      o = !0, n = r;
     } finally {
-      if (didIteratorError) throw iteratorError;
+      try {
+        if (!f && null != t["return"] && (u = t["return"](), Object(u) !== u)) return;
+      } finally {
+        if (o) throw n;
+      }
     }
+    return a;
   }
-  return _arr;
 }
-
-//# sourceMappingURL=iterableToArrayLimit.js.map
+module.exports = _iterableToArrayLimit, module.exports.__esModule = true, module.exports["default"] = module.exports;

@@ -1,15 +1,8 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _slicedToArray;
-var _arrayWithHoles = require("./arrayWithHoles.js");
-var _iterableToArrayLimit = require("./iterableToArrayLimit.js");
-var _unsupportedIterableToArray = require("./unsupportedIterableToArray.js");
-var _nonIterableRest = require("./nonIterableRest.js");
-function _slicedToArray(arr, i) {
-  return (0, _arrayWithHoles.default)(arr) || (0, _iterableToArrayLimit.default)(arr, i) || (0, _unsupportedIterableToArray.default)(arr, i) || (0, _nonIterableRest.default)();
+var arrayWithHoles = require("./arrayWithHoles.js");
+var iterableToArrayLimit = require("./iterableToArrayLimit.js");
+var unsupportedIterableToArray = require("./unsupportedIterableToArray.js");
+var nonIterableRest = require("./nonIterableRest.js");
+function _slicedToArray(r, e) {
+  return arrayWithHoles(r) || iterableToArrayLimit(r, e) || unsupportedIterableToArray(r, e) || nonIterableRest();
 }
-
-//# sourceMappingURL=slicedToArray.js.map
+module.exports = _slicedToArray, module.exports.__esModule = true, module.exports["default"] = module.exports;

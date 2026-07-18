@@ -1,11 +1,4 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _objectDestructuringEmpty;
-function _objectDestructuringEmpty(obj) {
-  if (obj == null) throw new TypeError("Cannot destructure " + obj);
+function _objectDestructuringEmpty(t) {
+  if (null == t) throw new TypeError("Cannot destructure " + t);
 }
-
-//# sourceMappingURL=objectDestructuringEmpty.js.map
+module.exports = _objectDestructuringEmpty, module.exports.__esModule = true, module.exports["default"] = module.exports;

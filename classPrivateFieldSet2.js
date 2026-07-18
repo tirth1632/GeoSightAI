@@ -1,13 +1,5 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _classPrivateFieldSet2;
-var _assertClassBrand = require("./assertClassBrand.js");
-function _classPrivateFieldSet2(privateMap, receiver, value) {
-  privateMap.set((0, _assertClassBrand.default)(privateMap, receiver), value);
-  return value;
+var assertClassBrand = require("./assertClassBrand.js");
+function _classPrivateFieldSet2(s, a, r) {
+  return s.set(assertClassBrand(s, a), r), r;
 }
-
-//# sourceMappingURL=classPrivateFieldSet2.js.map
+module.exports = _classPrivateFieldSet2, module.exports.__esModule = true, module.exports["default"] = module.exports;

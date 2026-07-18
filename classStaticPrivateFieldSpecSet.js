@@ -1,17 +1,7 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _classStaticPrivateFieldSpecSet;
-var _classApplyDescriptorSet = require("classApplyDescriptorSet");
-var _assertClassBrand = require("assertClassBrand");
-var _classCheckPrivateStaticFieldDescriptor = require("classCheckPrivateStaticFieldDescriptor");
-function _classStaticPrivateFieldSpecSet(receiver, classConstructor, descriptor, value) {
-  _assertClassBrand(classConstructor, receiver);
-  _classCheckPrivateStaticFieldDescriptor(descriptor, "set");
-  _classApplyDescriptorSet(receiver, descriptor, value);
-  return value;
+var classApplyDescriptorSet = require("./classApplyDescriptorSet.js");
+var assertClassBrand = require("./assertClassBrand.js");
+var classCheckPrivateStaticFieldDescriptor = require("./classCheckPrivateStaticFieldDescriptor.js");
+function _classStaticPrivateFieldSpecSet(s, t, r, e) {
+  return assertClassBrand(t, s), classCheckPrivateStaticFieldDescriptor(r, "set"), classApplyDescriptorSet(s, r, e), e;
 }
-
-//# sourceMappingURL=classStaticPrivateFieldSpecSet.js.map
+module.exports = _classStaticPrivateFieldSpecSet, module.exports.__esModule = true, module.exports["default"] = module.exports;

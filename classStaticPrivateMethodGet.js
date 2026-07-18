@@ -1,13 +1,5 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _classStaticPrivateMethodGet;
-var _assertClassBrand = require("./assertClassBrand.js");
-function _classStaticPrivateMethodGet(receiver, classConstructor, method) {
-  (0, _assertClassBrand.default)(classConstructor, receiver);
-  return method;
+var assertClassBrand = require("./assertClassBrand.js");
+function _classStaticPrivateMethodGet(s, a, t) {
+  return assertClassBrand(a, s), t;
 }
-
-//# sourceMappingURL=classStaticPrivateMethodGet.js.map
+module.exports = _classStaticPrivateMethodGet, module.exports.__esModule = true, module.exports["default"] = module.exports;

@@ -1,28 +1,10 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _regeneratorKeys;
-function _regeneratorKeys(val) {
-  var object = Object(val);
-  var keys = [];
-  var key;
-  for (var key in object) {
-    keys.unshift(key);
-  }
-  return function next() {
-    while (keys.length) {
-      key = keys.pop();
-      if (key in object) {
-        next.value = key;
-        next.done = false;
-        return next;
-      }
-    }
-    next.done = true;
-    return next;
+function _regeneratorKeys(e) {
+  var n = Object(e),
+    r = [];
+  for (var t in n) r.unshift(t);
+  return function e() {
+    for (; r.length;) if ((t = r.pop()) in n) return e.value = t, e.done = !1, e;
+    return e.done = !0, e;
   };
 }
-
-//# sourceMappingURL=regeneratorKeys.js.map
+module.exports = _regeneratorKeys, module.exports.__esModule = true, module.exports["default"] = module.exports;

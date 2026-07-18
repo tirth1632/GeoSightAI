@@ -1,72 +1,45 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _asyncIterator;
-function _asyncIterator(iterable) {
-  var method,
-    async,
-    sync,
-    retry = 2;
-  if (typeof Symbol !== "undefined") {
-    async = Symbol.asyncIterator;
-    sync = Symbol.iterator;
-  }
-  while (retry--) {
-    if (async && (method = iterable[async]) != null) {
-      return method.call(iterable);
-    }
-    if (sync && (method = iterable[sync]) != null) {
-      return new AsyncFromSyncIterator(method.call(iterable));
-    }
-    async = "@@asyncIterator";
-    sync = "@@iterator";
+function _asyncIterator(r) {
+  var n,
+    t,
+    o,
+    e = 2;
+  for ("undefined" != typeof Symbol && (t = Symbol.asyncIterator, o = Symbol.iterator); e--;) {
+    if (t && null != (n = r[t])) return n.call(r);
+    if (o && null != (n = r[o])) return new AsyncFromSyncIterator(n.call(r));
+    t = "@@asyncIterator", o = "@@iterator";
   }
   throw new TypeError("Object is not async iterable");
 }
-function AsyncFromSyncIterator(s) {
-  AsyncFromSyncIterator = function (s) {
-    this.s = s;
-    this.n = s.next;
-  };
-  AsyncFromSyncIterator.prototype = {
-    s: null,
-    n: null,
-    next: function () {
-      return AsyncFromSyncIteratorContinuation(this.n.apply(this.s, arguments));
-    },
-    return: function (value) {
-      var ret = this.s["return"];
-      if (ret === undefined) {
-        return Promise.resolve({
-          value: value,
-          done: true
-        });
-      }
-      return AsyncFromSyncIteratorContinuation(ret.apply(this.s, arguments));
-    },
-    throw: function (maybeError) {
-      var thr = this.s["return"];
-      if (thr === undefined) {
-        return Promise.reject(maybeError);
-      }
-      return AsyncFromSyncIteratorContinuation(thr.apply(this.s, arguments));
-    }
-  };
+function AsyncFromSyncIterator(r) {
   function AsyncFromSyncIteratorContinuation(r) {
-    if (Object(r) !== r) {
-      return Promise.reject(new TypeError(r + " is not an object."));
-    }
-    var done = r.done;
-    return Promise.resolve(r.value).then(function (value) {
+    if (Object(r) !== r) return Promise.reject(new TypeError(r + " is not an object."));
+    var n = r.done;
+    return Promise.resolve(r.value).then(function (r) {
       return {
-        value: value,
-        done: done
+        value: r,
+        done: n
       };
     });
   }
-  return new AsyncFromSyncIterator(s);
+  return AsyncFromSyncIterator = function AsyncFromSyncIterator(r) {
+    this.s = r, this.n = r.next;
+  }, AsyncFromSyncIterator.prototype = {
+    s: null,
+    n: null,
+    next: function next() {
+      return AsyncFromSyncIteratorContinuation(this.n.apply(this.s, arguments));
+    },
+    "return": function _return(r) {
+      var n = this.s["return"];
+      return void 0 === n ? Promise.resolve({
+        value: r,
+        done: !0
+      }) : AsyncFromSyncIteratorContinuation(n.apply(this.s, arguments));
+    },
+    "throw": function _throw(r) {
+      var n = this.s["return"];
+      return void 0 === n ? Promise.reject(r) : AsyncFromSyncIteratorContinuation(n.apply(this.s, arguments));
+    }
+  }, new AsyncFromSyncIterator(r);
 }
-
-//# sourceMappingURL=asyncIterator.js.map
+module.exports = _asyncIterator, module.exports.__esModule = true, module.exports["default"] = module.exports;

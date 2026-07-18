@@ -1,25 +1,11 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _get;
-var _superPropBase = require("./superPropBase.js");
+var superPropBase = require("./superPropBase.js");
 function _get() {
-  if (typeof Reflect !== "undefined" && Reflect.get) {
-    exports.default = _get = Reflect.get.bind();
-  } else {
-    exports.default = _get = function _get(target, property, receiver) {
-      var base = (0, _superPropBase.default)(target, property);
-      if (!base) return;
-      var desc = Object.getOwnPropertyDescriptor(base, property);
-      if (desc.get) {
-        return desc.get.call(arguments.length < 3 ? target : receiver);
-      }
-      return desc.value;
-    };
-  }
-  return _get.apply(null, arguments);
+  return module.exports = _get = "undefined" != typeof Reflect && Reflect.get ? Reflect.get.bind() : function (e, t, r) {
+    var p = superPropBase(e, t);
+    if (p) {
+      var n = Object.getOwnPropertyDescriptor(p, t);
+      return n.get ? n.get.call(arguments.length < 3 ? e : r) : n.value;
+    }
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports, _get.apply(null, arguments);
 }
-
-//# sourceMappingURL=get.js.map
+module.exports = _get, module.exports.__esModule = true, module.exports["default"] = module.exports;

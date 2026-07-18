@@ -1,98 +1,77 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _regeneratorRuntime;
-var _OverloadYield = require("./OverloadYield.js");
-var _regenerator = require("./regenerator.js");
-var _regeneratorAsync = require("./regeneratorAsync.js");
-var _regeneratorAsyncGen = require("./regeneratorAsyncGen.js");
-var _regeneratorAsyncIterator = require("./regeneratorAsyncIterator.js");
-var _regeneratorKeys = require("./regeneratorKeys.js");
-var _regeneratorValues = require("./regeneratorValues.js");
+var OverloadYield = require("./OverloadYield.js");
+var regenerator = require("./regenerator.js");
+var regeneratorAsync = require("./regeneratorAsync.js");
+var regeneratorAsyncGen = require("./regeneratorAsyncGen.js");
+var regeneratorAsyncIterator = require("./regeneratorAsyncIterator.js");
+var regeneratorKeys = require("./regeneratorKeys.js");
+var regeneratorValues = require("./regeneratorValues.js");
 function _regeneratorRuntime() {
   "use strict";
 
-  var r = (0, _regenerator.default)();
-  var gen = r.m(_regeneratorRuntime);
-  var GeneratorFunctionPrototype = Object.getPrototypeOf ? Object.getPrototypeOf(gen) : gen.__proto__;
-  var GeneratorFunction = GeneratorFunctionPrototype.constructor;
-  function isGeneratorFunction(genFun) {
-    var ctor = typeof genFun === "function" && genFun.constructor;
-    return ctor ? ctor === GeneratorFunction || (ctor.displayName || ctor.name) === "GeneratorFunction" : false;
+  var r = regenerator(),
+    e = r.m(_regeneratorRuntime),
+    t = (Object.getPrototypeOf ? Object.getPrototypeOf(e) : e.__proto__).constructor;
+  function n(r) {
+    var e = "function" == typeof r && r.constructor;
+    return !!e && (e === t || "GeneratorFunction" === (e.displayName || e.name));
   }
-  var abruptMap = {
-    throw: 1,
-    return: 2,
-    break: 3,
-    continue: 3
+  var o = {
+    "throw": 1,
+    "return": 2,
+    "break": 3,
+    "continue": 3
   };
-  function wrapInnerFn(innerFn) {
-    var compatContext;
-    var callSyncState;
-    return function (context) {
-      if (!compatContext) {
-        compatContext = {
-          stop: function () {
-            return callSyncState(context.a, 2);
-          },
-          catch: function () {
-            return context.v;
-          },
-          abrupt: function (type, arg) {
-            return callSyncState(context.a, abruptMap[type], arg);
-          },
-          delegateYield: function (iterable, resultName, nextLoc) {
-            compatContext.resultName = resultName;
-            return callSyncState(context.d, (0, _regeneratorValues.default)(iterable), nextLoc);
-          },
-          finish: function (finallyLoc) {
-            return callSyncState(context.f, finallyLoc);
-          }
-        };
-        callSyncState = function (fn, a1, a2) {
-          context.p = compatContext.prev;
-          context.n = compatContext.next;
-          try {
-            return fn(a1, a2);
-          } finally {
-            compatContext.next = context.n;
-          }
-        };
-      }
-      if (compatContext.resultName) {
-        compatContext[compatContext.resultName] = context.v;
-        compatContext.resultName = undefined;
-      }
-      compatContext.sent = context.v;
-      compatContext.next = context.n;
+  function a(r) {
+    var e, t;
+    return function (n) {
+      e || (e = {
+        stop: function stop() {
+          return t(n.a, 2);
+        },
+        "catch": function _catch() {
+          return n.v;
+        },
+        abrupt: function abrupt(r, e) {
+          return t(n.a, o[r], e);
+        },
+        delegateYield: function delegateYield(r, o, a) {
+          return e.resultName = o, t(n.d, regeneratorValues(r), a);
+        },
+        finish: function finish(r) {
+          return t(n.f, r);
+        }
+      }, t = function t(r, _t, o) {
+        n.p = e.prev, n.n = e.next;
+        try {
+          return r(_t, o);
+        } finally {
+          e.next = n.n;
+        }
+      }), e.resultName && (e[e.resultName] = n.v, e.resultName = void 0), e.sent = n.v, e.next = n.n;
       try {
-        return innerFn.call(this, compatContext);
+        return r.call(this, e);
       } finally {
-        context.p = compatContext.prev;
-        context.n = compatContext.next;
+        n.p = e.prev, n.n = e.next;
       }
     };
   }
-  return (exports.default = _regeneratorRuntime = function () {
+  return (module.exports = _regeneratorRuntime = function _regeneratorRuntime() {
     return {
-      wrap: function (innerFn, outerFn, self, tryLocsList) {
-        return r.w(wrapInnerFn(innerFn), outerFn, self, tryLocsList && tryLocsList.reverse());
+      wrap: function wrap(e, t, n, o) {
+        return r.w(a(e), t, n, o && o.reverse());
       },
-      isGeneratorFunction: isGeneratorFunction,
+      isGeneratorFunction: n,
       mark: r.m,
-      awrap: function (value, kind) {
-        return new _OverloadYield.default(value, kind);
+      awrap: function awrap(r, e) {
+        return new OverloadYield(r, e);
       },
-      AsyncIterator: _regeneratorAsyncIterator.default,
-      async: function (innerFn, outerFn, self, tryLocsList, PromiseImpl) {
-        return (isGeneratorFunction(outerFn) ? _regeneratorAsyncGen.default : _regeneratorAsync.default)(wrapInnerFn(innerFn), outerFn, self, tryLocsList, PromiseImpl);
+      AsyncIterator: regeneratorAsyncIterator,
+      async: function async(r, e, t, o, u) {
+        return (n(e) ? regeneratorAsyncGen : regeneratorAsync)(a(r), e, t, o, u);
       },
-      keys: _regeneratorKeys.default,
-      values: _regeneratorValues.default
+      keys: regeneratorKeys,
+      values: regeneratorValues
     };
-  })();
+  }, module.exports.__esModule = true, module.exports["default"] = module.exports)();
 }
-
-//# sourceMappingURL=regeneratorRuntime.js.map
+module.exports = _regeneratorRuntime, module.exports.__esModule = true, module.exports["default"] = module.exports;

@@ -1,23 +1,10 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _defineProperty;
-var _toPropertyKey = require("./toPropertyKey.js");
-function _defineProperty(obj, key, value) {
-  key = (0, _toPropertyKey.default)(key);
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-  return obj;
+var toPropertyKey = require("./toPropertyKey.js");
+function _defineProperty(e, r, t) {
+  return (r = toPropertyKey(r)) in e ? Object.defineProperty(e, r, {
+    value: t,
+    enumerable: !0,
+    configurable: !0,
+    writable: !0
+  }) : e[r] = t, e;
 }
-
-//# sourceMappingURL=defineProperty.js.map
+module.exports = _defineProperty, module.exports.__esModule = true, module.exports["default"] = module.exports;

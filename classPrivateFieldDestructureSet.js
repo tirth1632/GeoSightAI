@@ -1,14 +1,7 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _classPrivateFieldDestructureSet;
-var _classApplyDescriptorDestructureSet = require("classApplyDescriptorDestructureSet");
-var _classPrivateFieldGet = require("classPrivateFieldGet2");
-function _classPrivateFieldDestructureSet(receiver, privateMap) {
-  var descriptor = _classPrivateFieldGet(privateMap, receiver);
-  return _classApplyDescriptorDestructureSet(receiver, descriptor);
+var classApplyDescriptorDestructureSet = require("./classApplyDescriptorDestructureSet.js");
+var classPrivateFieldGet2 = require("./classPrivateFieldGet2.js");
+function _classPrivateFieldDestructureSet(e, t) {
+  var r = classPrivateFieldGet2(t, e);
+  return classApplyDescriptorDestructureSet(e, r);
 }
-
-//# sourceMappingURL=classPrivateFieldDestructureSet.js.map
+module.exports = _classPrivateFieldDestructureSet, module.exports.__esModule = true, module.exports["default"] = module.exports;

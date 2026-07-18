@@ -1,20 +1,10 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _construct;
-var _isNativeReflectConstruct = require("./isNativeReflectConstruct.js");
-var _setPrototypeOf = require("./setPrototypeOf.js");
-function _construct(Parent, args, Class) {
-  if ((0, _isNativeReflectConstruct.default)()) {
-    return Reflect.construct.apply(null, arguments);
-  }
-  var a = [null];
-  a.push.apply(a, args);
-  var instance = new (Parent.bind.apply(Parent, a))();
-  if (Class) (0, _setPrototypeOf.default)(instance, Class.prototype);
-  return instance;
+var isNativeReflectConstruct = require("./isNativeReflectConstruct.js");
+var setPrototypeOf = require("./setPrototypeOf.js");
+function _construct(t, e, r) {
+  if (isNativeReflectConstruct()) return Reflect.construct.apply(null, arguments);
+  var o = [null];
+  o.push.apply(o, e);
+  var p = new (t.bind.apply(t, o))();
+  return r && setPrototypeOf(p, r.prototype), p;
 }
-
-//# sourceMappingURL=construct.js.map
+module.exports = _construct, module.exports.__esModule = true, module.exports["default"] = module.exports;

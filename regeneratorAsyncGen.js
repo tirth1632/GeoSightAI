@@ -1,13 +1,6 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _regeneratorAsyncGen;
-var _regenerator = require("./regenerator.js");
-var _regeneratorAsyncIterator = require("./regeneratorAsyncIterator.js");
-function _regeneratorAsyncGen(innerFn, outerFn, self, tryLocsList, PromiseImpl) {
-  return new _regeneratorAsyncIterator.default((0, _regenerator.default)().w(innerFn, outerFn, self, tryLocsList), PromiseImpl || Promise);
+var regenerator = require("./regenerator.js");
+var regeneratorAsyncIterator = require("./regeneratorAsyncIterator.js");
+function _regeneratorAsyncGen(r, e, t, o, n) {
+  return new regeneratorAsyncIterator(regenerator().w(r, e, t, o), n || Promise);
 }
-
-//# sourceMappingURL=regeneratorAsyncGen.js.map
+module.exports = _regeneratorAsyncGen, module.exports.__esModule = true, module.exports["default"] = module.exports;

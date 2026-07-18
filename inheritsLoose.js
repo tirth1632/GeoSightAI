@@ -1,14 +1,5 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _inheritsLoose;
-var _setPrototypeOf = require("./setPrototypeOf.js");
-function _inheritsLoose(subClass, superClass) {
-  subClass.prototype = Object.create(superClass.prototype);
-  subClass.prototype.constructor = subClass;
-  (0, _setPrototypeOf.default)(subClass, superClass);
+var setPrototypeOf = require("./setPrototypeOf.js");
+function _inheritsLoose(t, o) {
+  t.prototype = Object.create(o.prototype), t.prototype.constructor = t, setPrototypeOf(t, o);
 }
-
-//# sourceMappingURL=inheritsLoose.js.map
+module.exports = _inheritsLoose, module.exports.__esModule = true, module.exports["default"] = module.exports;

@@ -1,12 +1,5 @@
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.default = _classCheckPrivateStaticAccess;
-var _assertClassBrand = require("assertClassBrand");
-function _classCheckPrivateStaticAccess(receiver, classConstructor, returnValue) {
-  return _assertClassBrand(classConstructor, receiver, returnValue);
+var assertClassBrand = require("./assertClassBrand.js");
+function _classCheckPrivateStaticAccess(s, a, r) {
+  return assertClassBrand(a, s, r);
 }
-
-//# sourceMappingURL=classCheckPrivateStaticAccess.js.map
+module.exports = _classCheckPrivateStaticAccess, module.exports.__esModule = true, module.exports["default"] = module.exports;
